@@ -20,4 +20,14 @@ class PostManager extends Manager
 
         return $post;
     }
+
+    public function getCheckPost($postId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT exists (SELECT * FROM posts WHERE id = ?) AS post_exist');
+        $req->execute(array($postId));
+        $check = $req->fetch();
+
+        return $check;
+    }
 }

@@ -39,4 +39,24 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+
+    public function getCheckComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT exists (SELECT * FROM comments WHERE id = ?) AS comment_exist');
+        $req->execute(array($commentId));
+        $check = $req->fetch();
+
+        return $check;
+    }
+
+    public function getCheckReport($reportId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT exists (SELECT * FROM reporting WHERE id = ?) AS report_exist');
+        $req->execute(array($reportId));
+        $check = $req->fetch();
+
+        return $check;
+    }
 }

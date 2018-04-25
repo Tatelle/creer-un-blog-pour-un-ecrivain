@@ -34,10 +34,10 @@ function adminDeleteReport($commentId){
     }
 }
 
-function adminCancelReport($commentId){
+function adminCancelReport($reportId){
     $adminManager = new AdminManager();
 
-    $affectedLines = $adminManager->setCancelReport($commentId);
+    $affectedLines = $adminManager->setCancelReport($reportId);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'annuler le signalement !');
@@ -78,9 +78,9 @@ function adminChangePost($postId){
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
-    $reporting = $commentManager->getReporting($_GET['id']);
+    $post = $postManager->getPost($postId);
+    $comments = $commentManager->getComments($postId);
+    $reporting = $commentManager->getReporting($postId);
 
     require('view/backend/adminChangePost.php');
 }
@@ -89,7 +89,7 @@ function adminChangingPost($postId){
     
     $adminManager = new AdminManager();
 
-    $affectedLines = $adminManager->setChangePost($_GET['id']);
+    $affectedLines = $adminManager->setChangePost($postId);
     if ($affectedLines === false) {
         throw new Exception('Impossible de modifier ce chapitre !');
     }
@@ -102,7 +102,7 @@ function adminDeletePost($postId){
     
     $adminManager = new AdminManager();
 
-    $affectedLines = $adminManager->setDeletePost($_GET['id']);
+    $affectedLines = $adminManager->setDeletePost($postId);
     if ($affectedLines === false) {
         throw new Exception('Impossible de supprimer ce chapitre !');
     }
@@ -110,4 +110,3 @@ function adminDeletePost($postId){
        header('Location: index.php?action=adminAllPosts');
     }    
 }
-
