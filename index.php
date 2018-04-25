@@ -37,7 +37,6 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
-
         }
         elseif ($_GET['action'] == 'report') {
             report($_GET['comment_id'], $_GET['post_id']);
@@ -71,12 +70,10 @@ try {
         elseif ($_GET['action'] == 'adminDeletePost') {
             adminDeletePost($_GET['id']);
         }
-
     }
     else {
         listPosts();
     }
-    
 }
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
