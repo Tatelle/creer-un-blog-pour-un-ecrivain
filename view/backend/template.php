@@ -22,7 +22,7 @@
 	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	    <![endif]-->
-        
+
         <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
         <script>
 		tinymce.init({
@@ -59,40 +59,31 @@
 			        <?php
 					}
 					else { ?>
-						<div class="navbar-right">
-							<ul class="nav navbar-nav">
-								<li><a href="index.php"><button  class="btn btn-info">Accéder au Blog</button></a></li>
-								<li><a href="index.php?admin=logout"><button  class="btn btn-primary">Déconnexion</button></a></li>
-         					 </ul>
-						</div>
+						<ul class="nav navbar-right navbar-nav">
+							<li><a href="index.php?action=admin"><button class="btn btn-xs btn-info">Accéder à la partie Admin</button></a></li>
+							<li><a href="index.php?admin=logout"><button class="btn btn-xs btn-primary">Déconnexion</button></a></li>
+     					</ul>
 					<?php
 					}
 					?>
 		        </div><!--/.navbar-collapse -->
       		</div>
    		</nav>
-    	<?php
-		if (!isset($_SESSION['login'])) //On est dans la page de formulaire
-		{ ?>
-			<p>Vous n'êtes pas autorisé à accéder à cette page. Merci devous connecter !</p>
-			<form method="POST">
-				<fieldset>
-					<legend>Connexion</legend>
-					<p>
-						<label for="login">Identifiant :</label><input name="login" type="text" id="login" /><br />
-						<label for="pass">Mot de Passe :</label><input type="password" name="pass" id="pass" />
-					</p>
-					<p><input type="submit" value="Connexion" /></p>
-				</fieldset>
-			</form>
-		<?php
-		}
-		else { ?>
-			<p><a href="index.php?admin=logout">Déconnexion</a></p>
+
+   		<div class="container">
+	    	<?php
+			if (!isset($_SESSION['login'])) //On est dans la page de formulaire
+			{ ?>
+				<div class="alert alert-danger" id="non_connecte">
+					<p><strong>Vous n'êtes pas autorisé à accéder à cette page !</strong> Merci de vous connecter...</p>
+				</div>
 			<?php
-			echo $content;
-		}
-		?>
+			}
+			else 
+			{ 
+				echo $content;
+			} ?>
+		</div>
 
         <!-- Bootstrap core JavaScript
 	    ================================================== -->

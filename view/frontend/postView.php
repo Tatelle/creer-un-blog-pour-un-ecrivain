@@ -19,11 +19,11 @@
                 <legend>Commentaires</legend>
                 <div class="form-group">
                     <label for="author">Nom :</label>
-                    <input type="text" id="author" name="author" class="form-control"/>
+                    <input type="text" id="author" name="author" class="form-control input-sm"/>
                 </div>
                 <div class="form-group">
                     <label for="comment">Commentaire :</label>
-                    <textarea id="comment" name="comment" class="form-control"></textarea>
+                    <textarea id="comment" name="comment" class="form-control input-sm"></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" />
@@ -56,7 +56,7 @@
                 if (isset($message_report) && $message_report == true)
                 { ?>
                     </p>
-                    <p class="alert alert-danger "><strong >Ce commentaire a déjà été signalé !</strong> Il sera traité par l'administrateur au plus vite.</p>
+                    <p class="alert alert-danger"><strong>Ce commentaire a déjà été signalé !</strong> Il sera traité par l'administrateur au plus vite.</p>
                 <?php
                 }
                 else { ?>
