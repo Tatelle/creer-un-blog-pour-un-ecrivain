@@ -60,7 +60,7 @@
 					}
 					else { ?>
 						<ul class="nav navbar-right navbar-nav">
-							<li><a href="index.php?action=admin"><button class="btn btn-xs btn-info">Accéder à la partie Admin</button></a></li>
+							<li><a href="index.php"><button class="btn btn-xs btn-info">Accéder au Blog</button></a></li>
 							<li><a href="index.php?admin=logout"><button class="btn btn-xs btn-primary">Déconnexion</button></a></li>
      					</ul>
 					<?php
@@ -84,7 +84,10 @@
 				echo $content;
 			} ?>
 		</div>
-
+		
+		<footer class="container">
+        	<p>Tous droits réservés © Christelle Fau 2018 - Formation Openclassrooms - Développeur Web Junior - Projet n°4 : Créez un blog pour un écrivain</p>
+        </footer>
         <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

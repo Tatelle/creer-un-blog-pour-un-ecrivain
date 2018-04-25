@@ -92,3 +92,7 @@ function login()
     }
     //echo $message;
 }
+
+function error($e){
+    require('view/frontend/errorView.php');
+}

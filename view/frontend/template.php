@@ -66,6 +66,9 @@
 
         <?= $content ?>
 
+        <footer class="container">
+        	<p>Tous droits réservés © Christelle Fau 2018 - Formation Openclassrooms - Développeur Web Junior - Projet n°4 : Créez un blog pour un écrivain</p>
+        </footer>
         <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
