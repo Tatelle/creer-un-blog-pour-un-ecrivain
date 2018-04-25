@@ -1,8 +1,10 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+<p class="bouton_retour"><a href="index.php?action=adminAllPosts""><button class="btn btn-default">Retour à tous les chapitresl</button></a></p>
+
 <h1>Modification</h1>
-<p><a href="index.php?action=adminAllPosts"><button>Retour</button></a></p>
+
 <p><a href="index.php?action=adminDeletePost&amp;id=<?= $post['id'] ?>"><button>Supprimer</button></a></p>
 <div class="news">
     <form action="index.php?action=adminChangingPost&amp;id=<?= $post['id'] ?>" method="post">

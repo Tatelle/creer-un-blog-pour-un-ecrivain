@@ -13,10 +13,10 @@
 		{ ?>
 		    <p>
 		    	<span class="red">Signalé le <?= $report['reporting_date'] ?> :</span> <?= $report['comment'] ?> 
-		    	<a href="index.php?action=adminDeleteReport&amp;id=<?= $report['comment_id'] ?>" >
+		    	<a href="index.php?action=adminDeleteReport&amp;id=<?= $report['comment_id'] ?>" data-toggle="tooltip" title="supprimer">
 		    		<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove"></button>
 		    	</a> 
-		    	<a href="index.php?action=adminCancelReport&amp;id=<?= $report['comment_id'] ?>" class="green">
+		    	<a href="index.php?action=adminCancelReport&amp;id=<?= $report['comment_id'] ?>" data-toggle="tooltip" title="Autoriser">
 		    		<button type="button" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button>
 		    	</a>
 		    </p>
