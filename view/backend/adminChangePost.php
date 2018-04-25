@@ -1,45 +1,34 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<p class="bouton_retour"><a href="index.php?action=adminAllPosts""><button class="btn btn-default">Retour à tous les chapitresl</button></a></p>
+<p class="bouton_retour"><a href="index.php?action=adminAllPosts""><button class="btn btn-default">Retour à tous les chapitres</button></a></p>
 
-<h1>Modification</h1>
+<h1>Modifications du chapitre
+    <a href="index.php?action=adminDeletePost&amp;id=<?= $post['id'] ?>" data-toggle="tooltip" title="Supprimer">
+        <button class="btn btn-danger btn-xs">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </a>
+</h1>
 
-<p><a href="index.php?action=adminDeletePost&amp;id=<?= $post['id'] ?>"><button>Supprimer</button></a></p>
-<div class="news">
-    <form action="index.php?action=adminChangingPost&amp;id=<?= $post['id'] ?>" method="post">
-        <div>
-            <label for="title">Titre du chapitre</label><br />
-            <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title']) ?>"/>
-        </div>
-        <div>
-            <label for="chapterContent">Contenu du chapitre</label><br />
-            <textarea  id="chapterContent" name="chapterContent"><?= nl2br($post['content']) ?></textarea>
-        </div>
-        <div>
-            <input type="submit" />
-        </div>
-    </form>
-    
-    
 
-</div>
-
-<h3>Commentaires</h3>
-
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-    <div>
-        <label for="author">Auteur</label><br />
-        <input type="text" id="author" name="author" />
+<form action="index.php?action=adminChangingPost&amp;id=<?= $post['id'] ?>" method="post">
+    <legend>Le Chapitre</legend>
+    <div class="form-group">
+        <label for="title">Titre du chapitre</label><br />
+        <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title']) ?>" class="form-control"/>
     </div>
-    <div>
-        <label for="comment">Commentaire</label><br />
-        <textarea id="comment" name="comment"></textarea>
+    <div class="form-group">
+        <label for="chapterContent">Contenu du chapitre</label><br />
+        <textarea id="chapterContent" name="chapterContent" class="form-control"><?= nl2br($post['content']) ?></textarea>
     </div>
-    <div>
-        <input type="submit" />
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" />
     </div>
 </form>
+
+
+<legend>Les Commentaires</legend>
 
 <?php $i=0;
 while ($report = $reporting->fetch())
@@ -51,7 +40,14 @@ while ($comment = $comments->fetch())
 {
 ?>
     <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+    <p>
+        <?= nl2br(htmlspecialchars($comment['comment'])) ?>
+        <a href="index.php?action=adminDeleteReport&amp;id=<?= $comment['id'] ?>" data-toggle="tooltip" title="Supprimer">
+            <button class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </a>
+    </p>
     
      <?php 
     $message_report=false;
@@ -67,10 +63,10 @@ while ($comment = $comments->fetch())
 
     if (isset($message_report) && $message_report == true)
     { ?>
-        <p class="red">Ce commentaire a été signalé !</p>
+        
+        <p class="alert alert-danger"><strong>Ce commentaire a été signalé par un lecteur !</strong></p>
     <?php
     } ?>
-    <a href="index.php?action=adminDeleteReport&amp;id=<?= $comment['id'] ?>" class="red"><p>[X]</p></a>
 <?php 
 }
 ?>
