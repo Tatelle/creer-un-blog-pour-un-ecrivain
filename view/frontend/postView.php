@@ -2,7 +2,12 @@
 
 <?php ob_start(); ?>
 <div class="container" id="page_chapitre">
-    <p><a href="index.php"><button class="btn btn-xs btn-default bouton_retour">Retour à la liste des chapitres</button></a></p>
+    <p>
+        <a href="index.php">
+            <button class="btn btn-xs btn-default bouton_retour">Retour à la liste des chapitres</button>
+        </a>
+    </p>
+    
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="panel-title">
@@ -10,11 +15,12 @@
                 <em>le <?= $post['creation_date_fr'] ?></em>
             </h1>
         </div>
-        <div class="panel-body"><?= nl2br($post['content']) ?> 
-        </div>
-        <div class="panel-footer">
-            
 
+        <div class="panel-body">
+            <?= nl2br($post['content']) ?> 
+        </div>
+
+        <div class="panel-footer">
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
                 <legend>Commentaires</legend>
                 <div class="form-group">
