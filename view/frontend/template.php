@@ -53,12 +53,12 @@
 			        <?php
 					}
 					else { ?>
-						<div class="navbar-right">
-							<ul class="nav navbar-nav">
-								<li><a href="index.php?action=admin"><button  class="btn btn-info">Accéder à la partie Admin</button></a></li>
-								<li><a href="index.php?admin=logout"><button  class="btn btn-primary">Déconnexion</button></a></li>
+						
+							<ul class="nav navbar-right navbar-nav">
+								<li><a href="index.php?action=admin"><button class="btn btn-xs btn-info">Accéder à la partie Admin</button></a></li>
+								<li><a href="index.php?admin=logout"><button class="btn btn-xs btn-primary">Déconnexion</button></a></li>
          					 </ul>
-						</div>
+						
 					<?php
 					}
 					?>
