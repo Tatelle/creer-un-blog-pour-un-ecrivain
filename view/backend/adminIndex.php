@@ -1,22 +1,40 @@
-<?php $title = 'Partie Administrateur'; ?>
+<?php $title = 'Partie Administrateur : Accueil'; ?>
 
 <?php ob_start(); ?>
 
 <h1>Bienvenue dans la partie Administrateur</h1>
 
-<h2>Commentaires signalés</h2>
+<div class="panel panel-danger">
+  	<div class="panel-heading">
+    	<h2 class="panel-title">Commentaires signalés</h2>
+  	</div>
+  	<div class="panel-body"><?php
+		while ($report = $reporting->fetch())
+		{ ?>
+		    <p>
+		    	<span class="red">Signalé le <?= $report['reporting_date'] ?> :</span> <?= $report['comment'] ?> 
+		    	<a href="index.php?action=adminDeleteReport&amp;id=<?= $report['comment_id'] ?>" >
+		    		<button type="button" class="btn btn-xs btn-danger glyphicon glyphicon-remove"></button>
+		    	</a> 
+		    	<a href="index.php?action=adminCancelReport&amp;id=<?= $report['comment_id'] ?>" class="green">
+		    		<button type="button" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button>
+		    	</a>
+		    </p>
 
-<?php
-while ($report = $reporting->fetch())
-{ ?>
-    <p>Signalé le <?= $report['reporting_date'] ?> : <?= $report['comment'] ?> <a href="index.php?action=adminDeleteReport&amp;id=<?= $report['comment_id'] ?>" class="red">[X]</a> <a href="index.php?action=adminCancelReport&amp;id=<?= $report['comment_id'] ?>" class="green">[V]</a></p>
+		<?php
+		} ?>
+	</div>
+</div>
 
-<?php
-} ?>
-
-<h2>Gestion du livre</h2>
-<a href="index.php?action=adminNewPost"><button>Nouveau Chapitre</button></a>
-<a href="index.php?action=adminAllPosts"><button>Voir tous les Chapitres</button></a>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h2 class="panel-title">Gestion du Roman</h2>
+	</div>
+	<div class="panel-body">
+		<a href="index.php?action=adminNewPost"><button class="btn btn-primary">Nouveau Chapitre</button></a>
+		<a href="index.php?action=adminAllPosts"><button class="btn btn-primary">Voir tous les Chapitres</button></a>
+	</div>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 

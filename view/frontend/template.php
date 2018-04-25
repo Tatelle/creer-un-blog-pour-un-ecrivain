@@ -57,9 +57,7 @@
 							<ul class="nav navbar-right navbar-nav">
 								<li><a href="index.php?action=admin"><button class="btn btn-xs btn-info">Accéder à la partie Admin</button></a></li>
 								<li><a href="index.php?admin=logout"><button class="btn btn-xs btn-primary">Déconnexion</button></a></li>
-         					 </ul>
-						
-					<?php
+         					</ul><?php
 					}
 					?>
 		        </div><!--/.navbar-collapse -->
