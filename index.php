@@ -6,6 +6,7 @@ require_once('controller/backend.php');
 
 try {
     if (isset($_POST['login'])) {
+        echo "cooucou !!!";
         $message = login();
         echo '<p>' . $message . '</p>';
     }

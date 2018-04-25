@@ -27,50 +27,47 @@
         
     <body>
     	<nav class="navbar navbar-inverse navbar-fixed-top">
-	      	<div class="container">
-		        <div class="navbar-header">
-		          	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		            	<span class="sr-only">Toggle navigation</span>
-		            	<span class="icon-bar"></span>
-		            	<span class="icon-bar"></span>
-		            	<span class="icon-bar"></span>
-		          	</button>
-		          	<a class="navbar-brand" href="#">Project name</a>
-		        </div>
-		        <div id="navbar" class="collapse navbar-collapse">
-		          	<ul class="nav navbar-nav">
-		            	<li class="active"><a href="#">Home</a></li>
-		            	<li><a href="#about">About</a></li>
-		            	<li><a href="#contact">Contact</a></li>
-		         	 </ul>
-		        </div><!--/.nav-collapse -->
-	      	</div>
-	    </nav>
-    	<?php
-		if (!isset($_SESSION['login'])) //On est dans la page de formulaire
-		{ ?>
-			<form method="POST">
-				<fieldset>
-					<legend>Connexion</legend>
-					<p>
-						<label for="login">Identifiant :</label><input name="login" type="text" id="login" /><br />
-						<label for="pass">Mot de Passe :</label><input type="password" name="pass" id="pass" />
-					</p>
-					<p><input type="submit" value="Connexion" /></p>
-				</fieldset>
-			</form>
-		<?php
-		}
-		else { ?>
-
-			<p><a href="index.php?action=admin"><button>accéder à la partie Admin</button></a></p>
-			<p><a href="index.php?admin=logout"><button>Déconnexion</button></a></p>
-		<?php
-		}
-		?>
+      		<div class="container">
+        		<div class="navbar-header">
+          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			         </button>
+          			<a class="navbar-brand" href="index.php">Billet simple pour l'Alaska</a>
+        		</div>
+		        <div id="navbar" class="navbar-collapse collapse">
+		        	<?php
+					if (!isset($_SESSION['login'])) //On est dans la page de formulaire
+					{ ?>
+			          	<form class="navbar-form navbar-right" method="POST" >
+			            	<div class="form-group">
+			             	 	<input name="login" type="text" id="login" placeholder="Identifiant" class="form-control">
+			            	</div>
+			            	<div class="form-group">
+			              		<input type="password" name="pass" id="pass" placeholder="Mot de passe" class="form-control">
+			            	</div>
+			            	<button type="submit" class="btn btn-success">Connexion</button>
+			          	</form>
+			        <?php
+					}
+					else { ?>
+						<div class="navbar-right">
+							<ul class="nav navbar-nav">
+								<li><a href="index.php?action=admin"><button  class="btn btn-info">Accéder à la partie Admin</button></a></li>
+								<li><a href="index.php?admin=logout"><button  class="btn btn-primary">Déconnexion</button></a></li>
+         					 </ul>
+						</div>
+					<?php
+					}
+					?>
+		        </div><!--/.navbar-collapse -->
+      		</div>
+   		</nav>
 
         <?= $content ?>
-        
+
         <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
