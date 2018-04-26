@@ -6,6 +6,8 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1" />
     	<meta name="description" content="Jean Forteroche, acteur et écrivain. Il travaille actuellement sur son prochain roman, 'Billet simple pour l'Alaska'. Il souhaite innover et le publier par épisode en ligne sur son propre site.">
     	<meta name="author" content="Site web fait en PHP et MySQL. Avec une architecture MVC et programmé en parie en orienté objet. Le site a été développé pour le projet 4 : 'Créez le blog d'un écrivain', dans le cadre de la formation Openclassrooms 'Développeur Web Junior'">
+    	<link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
 
         <title><?= $title ?></title>
 
@@ -49,7 +51,10 @@
 			              		<input type="password" name="pass" id="pass" placeholder="Mot de passe" class="form-control">
 			            	</div>
 			            	<button type="submit" class="btn btn-success">Connexion</button>
+			            	
 			          	</form>
+			          	
+			          	
 			        <?php
 					}
 					else { ?>

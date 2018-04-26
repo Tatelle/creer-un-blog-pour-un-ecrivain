@@ -7,12 +7,12 @@ require_once('controller/backend.php');
 try {
     if (isset($_POST['login'])) {
         $message = login();
-        echo '<p>' . $message . '</p>';
+        echo $message;
     }
     elseif (isset($_GET['admin']) && $_GET['admin'] == 'logout') {
         logout();
-
     }
+
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts' || $_GET['action'] == 'post' || $_GET['action'] == 'addComment' || $_GET['action'] == 'report' || $_GET['action'] == 'admin' || $_GET['action'] == 'adminDeleteReport' || $_GET['action'] == 'adminCancelReport' || $_GET['action'] == 'adminNewPost' || $_GET['action'] == 'adminAddPost' || $_GET['action'] == 'adminAllPosts' || $_GET['action'] == 'adminChangePost' || $_GET['action'] == 'adminChangingPost' || $_GET['action'] == 'adminDeleteComment' || $_GET['action'] == 'adminDeletePost')
         {

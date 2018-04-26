@@ -33,12 +33,9 @@ function login()
                 session_destroy();
             }
         }
-        return $message;
     }
     else {
         $message = 'Vous devez remplir tous les champs';
-
-        return $message;
     }
 }
 
