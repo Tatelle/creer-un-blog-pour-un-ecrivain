@@ -44,6 +44,9 @@
 					if (!isset($_SESSION['login'])) //On est dans la page de formulaire
 					{ ?>
 			          	<form class="navbar-form navbar-right" method="POST" >
+			          		<?php if(isset($_SESSION['message'])){ ?>
+			            		<div class="form-group"><p class="red"><?= $_SESSION['message'] ?></p></div>
+			            	<?php } ?>
 			            	<div class="form-group">
 			             	 	<input name="login" type="text" id="login" placeholder="Identifiant" class="form-control">
 			            	</div>

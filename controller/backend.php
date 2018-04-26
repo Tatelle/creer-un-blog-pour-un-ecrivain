@@ -17,9 +17,9 @@ function login()
 
         if ($loginAdmin === false)
         {
-            $message = 'Mauvais identifiant ou mot de passe !';
             $_SESSION = array();
             session_destroy();
+            $_SESSION['message'] = 'Mauvais identifiant ou mot de passe !';
         }
         else {
             if ($isPasswordCorrect) {                     
@@ -28,14 +28,14 @@ function login()
                 header('Location: index.php?action=admin');
             }
             else {
-                $message = 'Mauvais identifiant ou mot de passe !';
                 $_SESSION = array();
                 session_destroy();
+                $_SESSION['message'] = 'Mauvais identifiant ou mot de passe !';
             }
         }
     }
     else {
-        $message = 'Vous devez remplir tous les champs';
+        $_SESSION['message'] = 'Vous devez remplir tous les champs';
     }
 }
 

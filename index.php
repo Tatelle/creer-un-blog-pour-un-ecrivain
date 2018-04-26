@@ -6,8 +6,7 @@ require_once('controller/backend.php');
 
 try {
     if (isset($_POST['login'])) {
-        $message = login();
-        echo $message;
+        login();
     }
     elseif (isset($_GET['admin']) && $_GET['admin'] == 'logout') {
         logout();
