@@ -1,10 +1,46 @@
 <?php
 
 // Chargement des classes
-require_once('model/LoginManager.php');
 require_once('model/AdminManager.php');
 require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
+
+function login()
+{
+    if(isset($_POST['login']) && isset($_POST['pass']) && $_POST['login'] != '' && $_POST['pass'] != ''){
+        $login = htmlspecialchars($_POST['login']);
+        $pass = htmlspecialchars($_POST['pass']);
+
+        $loginManager = new AdminManager();
+        $loginAdmin = $loginManager->getLogin($login);
+        $isPasswordCorrect = password_verify($pass, $loginAdmin['pass']);
+
+        if ($loginAdmin === false)
+        {
+            $message = 'Mauvais identifiant ou mot de passe !';
+            $_SESSION = array();
+            session_destroy();
+        }
+        else {
+            if ($isPasswordCorrect) {                     
+                $_SESSION['id'] = $loginAdmin['id'];
+                $_SESSION['login'] = $loginAdmin;
+                header('Location: index.php?action=admin');
+            }
+            else {
+                $message = 'Mauvais identifiant ou mot de passe !';
+                $_SESSION = array();
+                session_destroy();
+            }
+        }
+        return $message;
+    }
+    else {
+        $message = 'Vous devez remplir tous les champs';
+
+        return $message;
+    }
+}
 
 function logout()
 {
@@ -36,7 +72,6 @@ function adminDeleteReport($commentId){
 
 function adminCancelReport($reportId){
     $adminManager = new AdminManager();
-
     $affectedLines = $adminManager->setCancelReport($reportId);
 
     if ($affectedLines === false) {
@@ -88,8 +123,8 @@ function adminChangePost($postId){
 function adminChangingPost($postId){
     
     $adminManager = new AdminManager();
-
     $affectedLines = $adminManager->setChangePost($postId);
+
     if ($affectedLines === false) {
         throw new Exception('Impossible de modifier ce chapitre !');
     }

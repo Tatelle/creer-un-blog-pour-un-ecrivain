@@ -25,12 +25,12 @@ while ($data = $posts->fetch())
   		</div>
   		<div class="panel-footer">
   			<a href="index.php?action=adminChangePost&amp;id=<?= $data['id'] ?>" data-toggle="tooltip" title="Modifier">
-				<button class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-pencil"></span></button>
-			</a> 
-			<a href="index.php?action=adminDeletePost&amp;id=<?= $data['id'] ?>" data-toggle="tooltip" title="Supprimer">
-				<button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></button>
-			</a>
-		</div>
+  				<button class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-pencil"></span></button>
+  			</a> 
+  			<a href="index.php?action=adminDeletePost&amp;id=<?= $data['id'] ?>" data-toggle="tooltip" title="Supprimer">
+          <button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></button>
+        </a>
+  		</div>
     </div>
 <?php
 }

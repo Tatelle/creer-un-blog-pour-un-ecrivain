@@ -3,7 +3,6 @@
 // Chargement des classes
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
-require_once('model/LoginManager.php');
 require_once('model/AdminManager.php');
 
 function listPosts()
@@ -48,43 +47,6 @@ function report($commentId, $postId){
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
-    }
-}
-
-function login()
-{
-    if(isset($_POST['login']) && isset($_POST['pass']) && $_POST['login'] != '' && $_POST['pass'] != ''){
-        $login = htmlspecialchars($_POST['login']);
-        $pass = htmlspecialchars($_POST['pass']);
-
-        $loginManager = new LoginManager();
-        $loginAdmin = $loginManager->getLogin($login);
-        $isPasswordCorrect = password_verify($pass, $loginAdmin['pass']);
-
-        if ($loginAdmin === false)
-        {
-            $message = 'Mauvais identifiant ou mot de passe !';
-            $_SESSION = array();
-            session_destroy();
-        }
-        else {
-            if ($isPasswordCorrect) {                     
-                $_SESSION['id'] = $loginAdmin['id'];
-                $_SESSION['login'] = $loginAdmin;
-                header('Location: index.php?action=admin');
-            }
-            else {
-                $message = 'Mauvais identifiant ou mot de passe !';
-                $_SESSION = array();
-                session_destroy();
-            }
-        }
-        return $message;
-    }
-    else {
-        $message = 'Vous devez remplir tous les champs';
-
-        return $message;
     }
 }
 

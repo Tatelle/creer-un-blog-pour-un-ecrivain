@@ -41,7 +41,7 @@ try {
                             addComment($_GET['id'], htmlspecialchars($_POST['author']), htmlspecialchars($_POST['comment']));
                         }
                         else{
-                            throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible d\'ajouter votre commentaire');
+                            throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible d\'ajouter votre commentaire !');
                         }
                     }
                     else {
@@ -49,7 +49,7 @@ try {
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Aucun identifiant de chapitre envoyé');
                 }
             }
             elseif ($_GET['action'] == 'report') {
@@ -69,12 +69,13 @@ try {
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet et/ou de commentaire envoyé');
+                    throw new Exception('Aucun identifiant de chapitre et/ou de commentaire envoyé');
                 }
             }
             elseif ($_GET['action'] == 'admin') {
                 adminIndex();
-            }elseif ($_GET['action'] == 'adminDeleteReport') {
+            }
+            elseif ($_GET['action'] == 'adminDeleteReport') {
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $commentExist = checkComment($_GET['id']);
                     if($commentExist['comment_exist']){
@@ -86,13 +87,14 @@ try {
                     
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Aucun identifiant de commentaire envoyé');
                 }
             }
             elseif ($_GET['action'] == 'adminCancelReport') {
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $exist = checkReport($_GET['id']);
                     if($exist['report_exist']){
+                        echo "coucou";
                         adminCancelReport($_GET['id']);
                     }
                     else{
@@ -100,7 +102,7 @@ try {
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Aucun identifiant de chapitre envoyé');
                 }
             }
             elseif ($_GET['action'] == 'adminNewPost') {
@@ -123,7 +125,7 @@ try {
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Aucun identifiant de chapitre envoyé');
                 }
             }
             elseif ($_GET['action'] == 'adminChangingPost') {
@@ -137,15 +139,7 @@ try {
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'adminDeleteComment') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    adminDeleteReport($_GET['id']);
-                }
-                else {
-                    throw new Exception('Aucun identifiant de commentaire envoyé');
+                    throw new Exception('Aucun identifiant de chapitre envoyé');
                 }
             }
             elseif ($_GET['action'] == 'adminDeletePost') {
@@ -155,11 +149,11 @@ try {
                         adminDeletePost($_GET['id']);
                     }
                     else{
-                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus).');
+                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible de le supprimer !');
                     }
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Aucun identifiant de chapitre envoyé');
                 }
             }
         }
