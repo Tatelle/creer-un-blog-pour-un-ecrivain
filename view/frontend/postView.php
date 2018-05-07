@@ -4,9 +4,9 @@
 
 <div class="container" id="page_chapitre">
 
-    <p>
+    <p class="bouton_retour">
         <a href="index.php">
-            <button class="btn btn-xs btn-default bouton_retour">Retour à la liste des chapitres</button>
+            <button class="btn btn-default">Retour à la liste des chapitres</button>
         </a>
     </p>
     
@@ -24,7 +24,7 @@
 
         <div class="panel-footer">
             <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-                <legend>Commentaires</legend>
+                <h2>Commentaires</h2>
                 <div class="form-group">
                     <label for="author">Nom :</label>
                     <input type="text" id="author" name="author" class="form-control input-sm"/>

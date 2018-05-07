@@ -22,12 +22,13 @@
 	            	<em>le <?= $data['creation_date_fr'] ?></em>
 	        	</h3>
 	  		</div>
-	  		<div class="panel-body"><?= substr(nl2br($data['content']), 0, 1000) ?> 
-	  			[...]</p>
+	  		<div class="panel-body">
+	  			<?= mb_substr(nl2br($data['content']), 0, 500, 'UTF-8') ?>
+	  			<p>[...]</p>
 	  		</div>
 	  		<div class="panel-footer">
 	  			<a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-					<button class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-comment"></span></button>
+					<p class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-comment"></span></p>
 				</a>
 			</div>
 		</div>
