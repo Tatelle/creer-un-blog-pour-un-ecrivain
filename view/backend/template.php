@@ -44,7 +44,7 @@
         		</div>
 		        <div id="navbar" class="navbar-collapse collapse">
 		        	<?php
-					if (!isset($_SESSION['login'])) //On est dans la page de formulaire
+					if (!isset($_SESSION['login']))
 					{ ?>
 			          	<form class="navbar-form navbar-right" method="POST" >
 			          		<?php if(isset($_SESSION['message'])){ ?>
@@ -68,13 +68,13 @@
 					<?php
 					}
 					?>
-		        </div><!--/.navbar-collapse -->
+		        </div>
       		</div>
    		</nav>
 
    		<div class="container">
 	    	<?php
-			if (!isset($_SESSION['login'])) //On est dans la page de formulaire
+			if (!isset($_SESSION['login']))
 			{ ?>
 				<div class="alert alert-danger" id="non_connecte">
 					<p><strong>Vous n'êtes pas autorisé à accéder à cette page !</strong> Merci de vous connecter...</p>
@@ -90,8 +90,7 @@
 		<footer class="container">
         	<p>Tous droits réservés © Christelle Fau 2018 - Formation Openclassrooms - Développeur Web Junior - Projet n°4 : Créez un blog pour un écrivain</p>
         </footer>
-        <!-- Bootstrap core JavaScript
-	    ================================================== -->
+
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	    <script>window.jQuery || document.write('<script src="vendor/bootstrap/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
 	    <script src="vendor/bootstrap/docs/dist/js/bootstrap.min.js"></script>

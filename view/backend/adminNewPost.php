@@ -1,7 +1,12 @@
 <?php $title = 'Partie Administrateur : Nouveau Chapitre'; ?>
 
 <?php ob_start(); ?>
-<p class="bouton_retour"><a href="index.php?action=admin"><button class="btn btn-default">Retour à l'accueil</button></a></p>
+
+<p class="bouton_retour">
+    <a href="index.php?action=admin">
+        <button class="btn btn-default">Retour à l'accueil</button>
+    </a>
+</p>
 
 <h1>Edition d'un nouveau Chapitre</h1>
 
@@ -18,8 +23,6 @@
         <input type="submit" class="btn btn-success" />
     </div>
 </form>
-
-
 
 <?php $content = ob_get_clean(); ?>
 

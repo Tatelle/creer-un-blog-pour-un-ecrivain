@@ -1,10 +1,15 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<p class="bouton_retour"><a href="index.php?action=adminAllPosts""><button class="btn btn-default">Retour à tous les chapitres</button></a></p>
+
+<p class="bouton_retour">
+    <a href="index.php?action=adminAllPosts"">
+        <button class="btn btn-default">Retour à tous les chapitres</button>
+    </a>
+</p>
 
 <h1>Modifications du chapitre
-    <a href="index.php?action=adminDeletePost&amp;id=<?= $post['id'] ?>" data-toggle="tooltip" title="Supprimer">
+    <a href="index.php?action=adminDeletePost&amp;id=<?= $post['id'] ?>" data-toggle="tooltip" title="Supprimer" onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?'));">
         <button class="btn btn-danger btn-xs">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -51,25 +56,23 @@ while ($comment = $comments->fetch())
     
      <?php 
     $message_report=false;
-    if (isset($comments_report)){
+
+    if (isset($comments_report)) {
         for ($i=0 ; $i<count($comments_report) ; $i++){
-            if ($comments_report[$i] == $comment['id'])
-            {
+            if ($comments_report[$i] == $comment['id']) {
                 $message_report=true;
             }
         }
     }
-    
 
-    if (isset($message_report) && $message_report == true)
-    { ?>
-        
+    if (isset($message_report) && $message_report == true) { 
+    ?>    
         <p class="alert alert-danger"><strong>Ce commentaire a été signalé par un lecteur !</strong></p>
     <?php
-    } ?>
-<?php 
+    }
 }
 ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

@@ -13,152 +13,171 @@ try {
     }
 
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts' || $_GET['action'] == 'post' || $_GET['action'] == 'addComment' || $_GET['action'] == 'report' || $_GET['action'] == 'admin' || $_GET['action'] == 'adminDeleteReport' || $_GET['action'] == 'adminCancelReport' || $_GET['action'] == 'adminNewPost' || $_GET['action'] == 'adminAddPost' || $_GET['action'] == 'adminAllPosts' || $_GET['action'] == 'adminChangePost' || $_GET['action'] == 'adminChangingPost' || $_GET['action'] == 'adminDeleteComment' || $_GET['action'] == 'adminDeletePost')
-        {
-            if ($_GET['action'] == 'listPosts') {
-                listPosts();
-            }
-            elseif ($_GET['action'] == 'post') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $exist = checkPost($_GET['id']);
-                    if($exist['post_exist']){
-                        post($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus).');
-                    }
+
+        if ($_GET['action'] == 'listPosts') {
+            listPosts();
+        }
+        elseif ($_GET['action'] == 'post') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $exist = checkPost($_GET['id']);
+
+                if($exist['post_exist']){
+                    post($_GET['id']);
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus).');
                 }
             }
-            elseif ($_GET['action'] == 'addComment') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                        $exist = checkPost($_GET['id']);
-                        if($exist['post_exist']){
-                            addComment($_GET['id'], htmlspecialchars($_POST['author']), htmlspecialchars($_POST['comment']));
-                        }
-                        else{
-                            throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible d\'ajouter votre commentaire !');
-                        }
-                    }
-                    else {
-                        throw new Exception('Tous les champs ne sont pas remplis !');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'report') {
-                if ((isset($_GET['post_id']) && $_GET['post_id'] > 0) && (isset($_GET['comment_id']) && $_GET['comment_id'] > 0)) {
-                    $postExist = checkPost($_GET['post_id']);
-                    if($postExist['post_exist']){
-                        $commentExist = checkComment($_GET['comment_id']);
-                        if($commentExist['comment_exist']){
-                            report($_GET['comment_id'], $_GET['post_id']);
-                        }
-                        else{
-                            throw new Exception('Oups ! Le commentaire que vous souhaitez signaler n\'existe pas (ou plus). Impossible de signaler le commentaire');
-                        }
-                    }
-                    else{
-                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible de signaler le commentaire !');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre et/ou de commentaire envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'admin') {
-                adminIndex();
-            }
-            elseif ($_GET['action'] == 'adminDeleteReport') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $commentExist = checkComment($_GET['id']);
-                    if($commentExist['comment_exist']){
-                        adminDeleteReport($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Le commentaire que vous souhaitez supprimer n\'existe pas (ou plus). Impossible de le supprimer !');
-                    }
-                    
-                }
-                else {
-                    throw new Exception('Aucun identifiant de commentaire envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'adminCancelReport') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $exist = checkReport($_GET['id']);
-                    if($exist['report_exist']){
-                        echo "coucou";
-                        adminCancelReport($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Le signalement que vous souhaitez annuler est introuvable.');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'adminNewPost') {
-                adminNewPost();
-            }
-            elseif ($_GET['action'] == 'adminAddPost') {
-                adminAddPost();
-            }
-            elseif ($_GET['action'] == 'adminAllPosts') {
-                adminAllPosts();
-            }
-            elseif ($_GET['action'] == 'adminChangePost') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $exist = checkPost($_GET['id']);
-                    if($exist['post_exist']){
-                        adminChangePost($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus).');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'adminChangingPost') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $exist = checkPost($_GET['id']);
-                    if($exist['post_exist']){
-                        adminChangingPost($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Impossible de mettre à jour le chapitre car il n\'existe pas (ou plus).');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre envoyé');
-                }
-            }
-            elseif ($_GET['action'] == 'adminDeletePost') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $exist = checkPost($_GET['id']);
-                    if($exist['post_exist']){
-                        adminDeletePost($_GET['id']);
-                    }
-                    else{
-                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible de le supprimer !');
-                    }
-                }
-                else {
-                    throw new Exception('Aucun identifiant de chapitre envoyé');
-                }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        else {
+        elseif ($_GET['action'] == 'addComment') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+
+                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                    $exist = checkPost($_GET['id']);
+
+                    if ($exist['post_exist']) {
+                        addComment($_GET['id'], htmlspecialchars($_POST['author']), htmlspecialchars($_POST['comment']));
+                    }
+                    else {
+                        throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible d\'ajouter votre commentaire !');
+                    }
+                }
+                else {
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'report') {
+
+            if ((isset($_GET['post_id']) && $_GET['post_id'] > 0) && (isset($_GET['comment_id']) && $_GET['comment_id'] > 0)) {
+                $postExist = checkPost($_GET['post_id']);
+
+                if ($postExist['post_exist']) {
+                    $commentExist = checkComment($_GET['comment_id']);
+
+                    if ($commentExist['comment_exist']) {
+                        report($_GET['comment_id'], $_GET['post_id']);
+                    }
+                    else{
+                        throw new Exception('Oups ! Le commentaire que vous souhaitez signaler n\'existe pas (ou plus). Impossible de signaler le commentaire');
+                    }
+
+                }
+                else{
+                    throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible de signaler le commentaire !');
+                }
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre et/ou de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'admin') {
+            adminIndex();
+        }
+        elseif ($_GET['action'] == 'adminDeleteReport') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $commentExist = checkComment($_GET['id']);
+
+                if ($commentExist['comment_exist']) {
+                    adminDeleteReport($_GET['id']);
+                }
+                else{
+                    throw new Exception('Oups ! Le commentaire que vous souhaitez supprimer n\'existe pas (ou plus). Impossible de le supprimer !');
+                }
+                
+            }
+            else {
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'adminCancelReport') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $exist = checkReport($_GET['id']);
+
+                if ($exist['report_exist']) {
+                    adminCancelReport($_GET['id']);
+                }
+                else{
+                    throw new Exception('Oups ! Le signalement que vous souhaitez annuler est introuvable.');
+                }
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'adminNewPost') {
+            adminNewPost();
+        }
+        elseif ($_GET['action'] == 'adminAddPost') {
+            adminAddPost();
+        }
+        elseif ($_GET['action'] == 'adminAllPosts') {
+            adminAllPosts();
+        }
+        elseif ($_GET['action'] == 'adminChangePost') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $exist = checkPost($_GET['id']);
+
+                if ($exist['post_exist']) {
+                    adminChangePost($_GET['id']);
+                }
+                else{
+                    throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus).');
+                }
+
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'adminChangingPost') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $exist = checkPost($_GET['id']);
+
+                if ($exist['post_exist']) {
+                    adminChangingPost($_GET['id']);
+                }
+                else{
+                    throw new Exception('Oups ! Impossible de mettre à jour le chapitre car il n\'existe pas (ou plus).');
+                }
+
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'adminDeletePost') {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $exist = checkPost($_GET['id']);
+
+                if ($exist['post_exist']) {
+                    adminDeletePost($_GET['id']);
+                }
+                else{
+                    throw new Exception('Oups ! Le chapitre que vous cherchez n\'existe pas (ou plus). Impossible de le supprimer !');
+                }
+
+            }
+            else {
+                throw new Exception('Aucun identifiant de chapitre envoyé');
+            }
+        }else {
             throw new Exception('Oups ! La page que vous cherchez n\'existe pas (ou plus).');
         }  
+ 
     }
     else {
         listPosts();

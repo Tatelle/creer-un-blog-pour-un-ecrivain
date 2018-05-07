@@ -24,7 +24,6 @@ class CommentManager extends Manager
     public function getReporting($postId)
     {
         $db = $this->dbConnect();
-
         $reporting = $db->prepare('SELECT * FROM posts AS p INNER JOIN comments AS c ON c.post_id = p.id INNER JOIN reporting AS r ON c.id = r.comment_id WHERE p.id = ?');
         $reporting->execute(array($postId));
 

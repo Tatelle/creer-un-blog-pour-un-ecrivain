@@ -16,7 +16,6 @@ class AdminManager extends Manager
     public function getReportingAdmin()
     {
         $db = $this->dbConnect();
-
         $reporting = $db->prepare('SELECT * FROM posts AS p INNER JOIN comments AS c ON c.post_id = p.id INNER JOIN reporting AS r ON c.id = r.comment_id');
         $reporting->execute();
 
@@ -35,6 +34,7 @@ class AdminManager extends Manager
         else {
             $req = $db->prepare('DELETE FROM reporting WHERE comment_id = ?');
             $deleteReporting = $req->execute(array($commentId));
+
             return $deleteReporting;
         }
     }
@@ -44,6 +44,7 @@ class AdminManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM reporting WHERE id = ?');
         $deleteReporting = $req->execute(array($reportId));
+
         return $deleteReporting;
     }
 
@@ -52,6 +53,7 @@ class AdminManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (?, ?, NOW())');
         $affectedLines = $req->execute(array($_POST['title'], $_POST['chapterContent']));
+
         return $affectedLines;
     }
 
@@ -60,15 +62,16 @@ class AdminManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE posts SET title = ?, content=? WHERE `posts`.`id` = ?');
         $affectedLines = $req->execute(array($_POST['title'], $_POST['chapterContent'], $postId));
+
         return $affectedLines;
     }
 
     public function setDeletePost($postId)
     {
-        echo "coucou  !!! " . $postId;
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM posts WHERE id = ?');
         $affectedLines = $req->execute(array($postId));
+
         if ($affectedLines === false) {
             throw new Exception('Impossible de supprimer le chapitre !');
         }
@@ -80,6 +83,7 @@ class AdminManager extends Manager
             {
                 $deleteComments= $this->setDeleteReport($comment['id']);
             }
+            
             return $deleteComments;
         }
     }

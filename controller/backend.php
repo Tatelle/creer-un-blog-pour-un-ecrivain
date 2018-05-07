@@ -7,7 +7,7 @@ require_once('model/PostManager.php');
 
 function login()
 {
-    if(isset($_POST['login']) && isset($_POST['pass']) && $_POST['login'] != '' && $_POST['pass'] != ''){
+    if(isset($_POST['login']) && isset($_POST['pass']) && $_POST['login'] != '' && $_POST['pass'] != '') {
         $login = htmlspecialchars($_POST['login']);
         $pass = htmlspecialchars($_POST['pass']);
 
@@ -15,13 +15,15 @@ function login()
         $loginAdmin = $loginManager->getLogin($login);
         $isPasswordCorrect = password_verify($pass, $loginAdmin['pass']);
 
-        if ($loginAdmin === false)
-        {
+        if ($loginAdmin === false){
             $_SESSION = array();
             session_destroy();
+
             $_SESSION['message'] = 'Mauvais identifiant ou mot de passe !';
+
         }
         else {
+            
             if ($isPasswordCorrect) {                     
                 $_SESSION['id'] = $loginAdmin['id'];
                 $_SESSION['login'] = $loginAdmin;
@@ -48,15 +50,14 @@ function logout()
 function adminIndex()
 {
     $adminManager = new AdminManager();
-
     $reporting = $adminManager->getReportingAdmin();
 
     require('view/backend/adminIndex.php');
 }
 
-function adminDeleteReport($commentId){
+function adminDeleteReport($commentId)
+{
     $adminManager = new AdminManager();
-
     $affectedLines = $adminManager->setDeleteReport($commentId);
 
     if ($affectedLines === false) {
@@ -67,7 +68,8 @@ function adminDeleteReport($commentId){
     }
 }
 
-function adminCancelReport($reportId){
+function adminCancelReport($reportId)
+{
     $adminManager = new AdminManager();
     $affectedLines = $adminManager->setCancelReport($reportId);
 
@@ -79,13 +81,14 @@ function adminCancelReport($reportId){
     }
 }
 
-function adminNewPost(){
+function adminNewPost() 
+{
     require('view/backend/adminNewPost.php');
 }
 
-function adminAddPost(){
+function adminAddPost() 
+{
     $adminManager = new AdminManager();
-
     $affectedLines = $adminManager->setNewPost();
 
     if ($affectedLines === false) {
@@ -97,16 +100,16 @@ function adminAddPost(){
     }
 }
 
-function adminAllPosts(){
-    
+function adminAllPosts() 
+{
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/backend/adminAllPosts.php');
 }
 
-function adminChangePost($postId){
-    
+function adminChangePost($postId) 
+{
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
@@ -117,8 +120,8 @@ function adminChangePost($postId){
     require('view/backend/adminChangePost.php');
 }
 
-function adminChangingPost($postId){
-    
+function adminChangingPost($postId) 
+{
     $adminManager = new AdminManager();
     $affectedLines = $adminManager->setChangePost($postId);
 
@@ -130,11 +133,11 @@ function adminChangingPost($postId){
     }    
 }
 
-function adminDeletePost($postId){
-    
+function adminDeletePost($postId)
+{
     $adminManager = new AdminManager();
-
     $affectedLines = $adminManager->setDeletePost($postId);
+
     if ($affectedLines === false) {
         throw new Exception('Impossible de supprimer ce chapitre !');
     }

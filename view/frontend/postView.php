@@ -1,7 +1,9 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+
 <div class="container" id="page_chapitre">
+
     <p>
         <a href="index.php">
             <button class="btn btn-xs btn-default bouton_retour">Retour à la liste des chapitres</button>
@@ -36,48 +38,57 @@
                 </div>
             </form>
 
-            <?php $i=0;
-            while ($report = $reporting->fetch())
-            {
+            <?php 
+            $i=0;
+            
+            while ($report = $reporting->fetch()) {
                 $comments_report[$i] = $report['comment_id'];
                 $i++;
             }
-            while ($comment = $comments->fetch())
-            {
+
+            while ($comment = $comments->fetch()) {
             ?>
                 <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
                 <p><?= nl2br(htmlspecialchars($comment['comment'])) ?>
                 
                 <?php 
                 $message_report=false;
-                if (isset($comments_report)){
+
+                if (isset($comments_report)) {
+
                     for ($i=0 ; $i<count($comments_report) ; $i++){
-                        if ($comments_report[$i] == $comment['id'])
-                        {
+
+                        if ($comments_report[$i] == $comment['id']){
                             $message_report=true;
                         }
                     }
                 }
                 
-                if (isset($message_report) && $message_report == true)
-                { ?>
+                if (isset($message_report) && $message_report == true) { 
+                ?>
                     </p>
                     <p class="alert alert-danger"><strong>Ce commentaire a déjà été signalé !</strong> Il sera traité par l'administrateur au plus vite.</p>
                 <?php
                 }
-                else { ?>
+                else { 
+                ?>
 
                     <a href="index.php?action=report&amp;comment_id=<?= $comment['id'] ?>&amp;post_id=<?= $comment['post_id'] ?>">
                         <button class="reporting btn-xs btn-danger" >Signaler</button>
                     </a>
                     </p>
-                    <?php 
+                 
+                <?php 
                 }
             }
             ?>
+
         </div>
+
     </div>
+
 </div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

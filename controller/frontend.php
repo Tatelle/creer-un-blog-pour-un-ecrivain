@@ -38,7 +38,8 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function report($commentId, $postId){
+function report($commentId, $postId)
+{
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->postReporting($commentId);
 
@@ -50,11 +51,13 @@ function report($commentId, $postId){
     }
 }
 
-function error($e){
+function error($e)
+{
     require('view/frontend/errorView.php');
 }
 
-function checkPost($postId){
+function checkPost($postId)
+{
     $postId = intval($postId);
     $postManager = new PostManager();
     $check = $postManager->getCheckPost($postId);
@@ -62,7 +65,8 @@ function checkPost($postId){
     return $check;
 }
 
-function checkComment($commentId){
+function checkComment($commentId)
+{
     $commentId = intval($commentId);
     $commentManager = new CommentManager();
     $check = $commentManager->getCheckComment($commentId);
@@ -70,7 +74,8 @@ function checkComment($commentId){
     return $check;
 }
 
-function checkReport($reportId){
+function checkReport($reportId)
+{
     $reportId = intval($reportId);
     $commentManager = new CommentManager();
     $check = $commentManager->getCheckReport($reportId);
