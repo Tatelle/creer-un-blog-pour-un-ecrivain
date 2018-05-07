@@ -22,8 +22,8 @@
 	            	<em>le <?= $data['creation_date_fr'] ?></em>
 	        	</h3>
 	  		</div>
-	  		<div class="panel-body"><?= substr(nl2br($data['content']), 0, 5000) ?> 
-	  			<p>[...]</p>
+	  		<div class="panel-body"><?= substr(nl2br($data['content']), 0, 1000) ?> 
+	  			[...]</p>
 	  		</div>
 	  		<div class="panel-footer">
 	  			<a href="index.php?action=post&amp;id=<?= $data['id'] ?>">

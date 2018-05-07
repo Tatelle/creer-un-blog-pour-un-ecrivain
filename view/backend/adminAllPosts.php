@@ -26,7 +26,7 @@ while ($data = $posts->fetch())
       	</h2>
       </div>
       <div class="panel-body">
-      	<?= substr(nl2br($data['content']), 0, 5000) ?> 
+      	<?= substr(nl2br($data['content']), 0, 1000) ?> 
   		<p>[...]</p>
 		</div>
 		<div class="panel-footer">

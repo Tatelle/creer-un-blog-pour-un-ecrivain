@@ -40,7 +40,7 @@
 
             <?php 
             $i=0;
-            
+
             while ($report = $reporting->fetch()) {
                 $comments_report[$i] = $report['comment_id'];
                 $i++;
@@ -73,7 +73,8 @@
                 else { 
                 ?>
 
-                    <a href="index.php?action=report&amp;comment_id=<?= $comment['id'] ?>&amp;post_id=<?= $comment['post_id'] ?>">
+                    <br/>
+                    <a href="index.php?action=report&amp;comment_id=<?= $comment['id'] ?>&amp;post_id=<?= $comment['post_id'] ?>" onclick="return(confirm('Etes-vous sûr de vouloir signaler ce commentaire ?'));">
                         <button class="reporting btn-xs btn-danger" >Signaler</button>
                     </a>
                     </p>

@@ -47,7 +47,7 @@ while ($comment = $comments->fetch())
     <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
     <p>
         <?= nl2br(htmlspecialchars($comment['comment'])) ?>
-        <a href="index.php?action=adminDeleteReport&amp;id=<?= $comment['id'] ?>" data-toggle="tooltip" title="Supprimer">
+        <a href="index.php?action=adminDeleteReport&amp;id=<?= $comment['id'] ?>" data-toggle="tooltip" title="Supprimer" onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?'));">
             <button class="btn btn-danger btn-xs">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
