@@ -1,4 +1,4 @@
-<?php $title = 'Partie Administrateur : Accueil'; ?>
+<?php $title = 'Admin - Accueil'; ?>
 
 <?php ob_start(); ?>
 

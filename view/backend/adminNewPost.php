@@ -1,4 +1,4 @@
-<?php $title = 'Partie Administrateur : Nouveau Chapitre'; ?>
+<?php $title = 'Admin - Nouveau Chapitre'; ?>
 
 <?php ob_start(); ?>
 
@@ -20,7 +20,7 @@
         <textarea  id="chapterContent" name="chapterContent" class="form-control"></textarea>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-success" />
+        <input type="submit" class="btn btn-success" value="Enregistrer" />
     </div>
 </form>
 

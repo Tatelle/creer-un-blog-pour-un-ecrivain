@@ -1,4 +1,4 @@
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php $title = htmlspecialchars("Admin - Modification : " . $post['title']); ?>
 
 <?php ob_start(); ?>
 
@@ -28,7 +28,7 @@
         <textarea id="chapterContent" name="chapterContent" class="form-control"><?= nl2br($post['content']) ?></textarea>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-success" />
+        <input type="submit" class="btn btn-success" value="Enregistrer" />
     </div>
 </form>
 
